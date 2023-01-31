@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+   <div class="container-fluid">
+      <div class="row justify-content-center">
+         <div class="col-12 col-lg-10 col-xl-8">
+
+            <!-- Header -->
+            <div class="header mt-md-5">
+               <div class="header-body">
+                  <div class="row align-items-center">
+                     <div class="col">
+
+                        <!-- Pretitle -->
+                        <h6 class="header-pretitle">
+                           Novo Registro
+                        </h6>
+
+                        <!-- Title -->
+                        <h1 class="header-title">
+                           Entrada de Registro Contabil
+                        </h1>
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <!-- Form -->
+            <form action="/add-registro" method="post" class="mb-4">
+
+               <!-- Descrição -->
+               <div class="form-group">
+                  <label class="form-label">
+                     Descrição
+                  </label>
+                  <input type="text" name="description" class="form-control">
+               </div>
+
+               <!-- Project tags -->
+               <div class="row">
+                  <div class="col-12 col-md-6">
+                     <div class="form-group">
+                        <label class="form-label">
+                           Categoria
+                        </label>
+
+                        <!-- Select -->
+                        <select name="category" class="form-control" data-choices='{"removeItemButton": true}' multiple>
+                           <option value="Fatura">Fatura</option>
+                           <option value="Fixo">Fixo</option>
+                           <option value="Variavel">Variavel</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                     <div class="form-group">
+                        <label class="form-label">
+                           Operação
+                        </label>
+
+                        <!-- Select -->
+                        <select name="operation" class="form-control" data-choices='{"removeItemButton": true}'
+                           multiple>
+                           <option value="Debito">Débito</option>
+                           <option value="Credito">Crédito</option>
+                        </select>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="row">
+                  <div class="col-12 col-md-6">
+                     <!-- Valor -->
+                     <div class="form-group">
+                        <label class="form-label">
+                           Valor
+                        </label>
+                        <input name="value" type="text" class="form-control">
+                     </div>
+
+                  </div>
+                  <div class="col-12 col-md-6">
+                     <!-- Data -->
+                     <div class="form-group">
+                        <label class="form-label">
+                           Data
+                        </label>
+                        <input name="date" type="text" class="form-control" data-flatpickr>
+                     </div>
+                  </div>
+               </div>
+
+               <hr class="mt-4 mb-5">
+
+               <div class="row">
+                  <div class="col-12 col-md-6">
+
+                     <!-- Private project -->
+                     <div class="form-group">
+                        <label class="form-label mb-1">
+                           Private project
+                        </label>
+
+                        <!-- Text -->
+                        <small class="form-text text-muted">
+                           If you are available for hire outside of the current situation, you can encourage others
+                           to hire you.
+                        </small>
+
+                        <!-- Switch -->
+                        <div class="form-check form-switch">
+                           <input class="form-check-input" type="checkbox" id="switchOne" />
+                           <label class="form-check-label" for="switchOne"></label>
+                        </div>
+
+                     </div>
+
+                  </div>
+                  <div class="col-12 col-md-6">
+
+                     <!-- Warning -->
+                     <div class="card bg-light border">
+                        <div class="card-body">
+                           <h4 class="mb-2">
+                              <i class="fe fe-alert-triangle"></i> Warning
+                           </h4>
+
+                           <!-- Text -->
+                           <p class="small text-muted mb-0">
+                              Once a project is made private, you cannot revert it to a public project.
+                           </p>
+
+                        </div>
+                     </div>
+
+                  </div>
+               </div>
+
+               <hr class="mt-5 mb-5">
+
+               <!-- Buttons -->
+               <div class="row">
+                  <div class="col-12 col-md-6">
+                     <a href="#" class="btn w-100 btn-link text-muted mt-2">
+                        Cancelar Inclusão
+                     </a>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                     <button type="submit" class="btn w-100 btn-primary">
+                        Adicionar Registro
+                     </button>
+                  </div>
+               </div>
+
+            </form>
+
+         </div>
+      </div>
+   </div>
+
+</div>
+{% endblock %}

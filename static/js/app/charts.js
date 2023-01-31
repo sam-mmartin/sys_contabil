@@ -1,6 +1,9 @@
 var element = document.getElementById('month-debits').dataset;
+var invoices = document.getElementById('debitsChart').dataset;
+
 var debits = '';
 var data_debits = [];
+var invoices_debits = {};
 
 for (var i in element) {
    debits = element[i];
@@ -48,6 +51,29 @@ new Chart('month-debits', {
    }
 });
 
+for (var i in invoices) {
+   debits = invoices[i]
+}
+
+debits = debits.replace('{', '').replace('}', '');
+debits = debits.split(',');
+
+var invoice_amount = 0;
+
+for (var i in debits) {
+   kv = debits[i].split(':');
+   key = kv[0].replace('\'', '').replace('\'', '').trim();
+   value = kv[1].replace('\'', '').replace('\'', '');
+   value = parseFloat(value);
+   invoices_debits[key] = value;
+   invoice_amount += value;
+}
+
+for (var i in invoices_debits) {
+   x = (invoices_debits[i] * 100) / invoice_amount;
+   invoices_debits[i] = x;
+}
+
 new Chart('debitsChart', {
    type: 'doughnut',
    options: {
@@ -64,7 +90,11 @@ new Chart('debitsChart', {
    data: {
       labels: ['Faturas', 'Fixos', 'Variaveis'],
       datasets: [{
-         data: [60, 25, 15],
+         data: [
+            invoices_debits.Fatura,
+            invoices_debits.Fixo,
+            invoices_debits.Variavel
+         ],
          backgroundColor: ['#2C7BE5', '#A6C5F7', '#D2DDEC']
       }]
    }

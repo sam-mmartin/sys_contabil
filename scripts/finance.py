@@ -1,6 +1,5 @@
 from functools import reduce
 import numpy as np
-import pandas as pd
 
 
 class Finance:
@@ -42,22 +41,22 @@ class Finance:
         print("Montante Credito: R$ {:.2f}".format(credit))
         print("Saldo: R$ {:.2f}".format(balance))
 
-    def credit_amount(self):
+    def credit_amount(self) -> float:
         return self.balance_calc(self.credits)
 
-    def debit_amount(self):
+    def debit_amount(self) -> float:
         return self.balance_calc(self.debits)
 
-    def balance_calc(self, rows):
+    def balance_calc(self, rows) -> float:
         values = []
 
         for row in rows:
             values.append(row[1])
 
         res = np.sum(np.asarray(values, dtype=float))
-        return res
+        return round(res, 2)
 
-    def invoice_debits(self):
+    def invoice_debits(self) -> dict:
         self.set_categorys(self.debits)
         invoice_set = {}
 

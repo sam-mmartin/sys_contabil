@@ -4,6 +4,7 @@ from os import system
 from file_management import FileManagement
 
 import views
+import platform
 
 # Variaveis
 stop = True
@@ -15,14 +16,16 @@ sys_manager = SystemManager(fm)
 fm.create_file()
 table = fm.load_from_file()
 finance = Finance(table)
+clear = 'cls' if platform.system() == 'Windows' else 'clear'
 
 # Entradas
 while stop:
+    system(clear) or None
     sys_manager.menu()
     option = input("Informe a opção: ")
     option = 1111 if not option else int(option)
 
-    system('clear') or None
+    system(clear) or None
 
     match option:
         case 1:
@@ -64,7 +67,7 @@ while stop:
                 finance.set_credits(table)
                 fm.printView()
         case 10:
-            finance.categorys()
+            print(finance.invoice_debits())
         case 0:
             registers = sys_manager.get_registers()
             size = len(registers)

@@ -1,7 +1,7 @@
 from os import system
-from file_management import FileManagement
-import utils
-import views
+from scripts.file_management import FileManagement
+import scripts.utils as utils
+import scripts.views as views
 
 
 class SystemManager:
@@ -76,7 +76,6 @@ class SystemManager:
         print('Registro removido.')
 
     def menu(self):
-        system('clear') or None
         print('1 - Novo Registro')
         print('2 - Planilha')
         print('3 - Cache')
