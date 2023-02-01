@@ -9,12 +9,21 @@ for (var i in element) {
    debits = element[i];
 }
 
-debits = debits.replace('[', '').replace(']', '');
+debits = debits.replace(/\{/g, '').replace(/}/g, '');
 debits = debits.split(',');
 
+values = [];
+dates = [];
+
 debits.forEach(item => {
-   data_debits.push(parseFloat(item));
-})
+   temp = item.split(':');
+   dates.push(temp[0]);
+   values.push(parseFloat(temp[1]));
+});
+
+values.forEach(item => {
+   data_debits.push(item / 50);
+});
 
 new Chart('month-debits', {
    type: 'bar',
@@ -23,27 +32,14 @@ new Chart('month-debits', {
          y: {
             ticks: {
                callback: function (value) {
-                  return 'R$ ' + value / 1000 + 'k';
+                  return 'R$ ' + value * 50;
                }
             }
          }
       }
    },
    data: {
-      labels: [
-         'Jan',
-         'Fev',
-         'Mar',
-         'Abr',
-         'Mai',
-         'Jun',
-         'Jul',
-         'Agt',
-         'Set',
-         'Out',
-         'Nov',
-         'Dez'
-      ],
+      labels: dates,
       datasets: [{
          label: 'Débitos',
          data: data_debits
@@ -98,4 +94,65 @@ new Chart('debitsChart', {
          backgroundColor: ['#2C7BE5', '#A6C5F7', '#D2DDEC']
       }]
    }
+});
+
+new Chart('anualDebits', {
+   type: 'line',
+   options: {
+      scales: {
+         yAxisOne: {
+            display: "auto",
+            grid: { color: "#283E59" },
+            ticks: {
+               callback: function (e) {
+                  return e + "k";
+               },
+            },
+         },
+         yAxisTwo: {
+            display: "auto",
+            grid: { color: "#283E59" },
+            ticks: {
+               callback: function (e) {
+                  return e + "%";
+               },
+            },
+         },
+      },
+   },
+   data: {
+      labels: [
+         "Jan",
+         "Feb",
+         "Mar",
+         "Apr",
+         "May",
+         "Jun",
+         "Jul",
+         "Aug",
+         "Sep",
+         "Oct",
+         "Nov",
+         "Dec",
+      ],
+      datasets: [
+         {
+            label: "Entradas",
+            data: [5321.74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            yAxisID: "yAxisOne",
+         },
+         {
+            label: "Saidas",
+            data: [5712.12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            yAxisID: "yAxisOne",
+            hidden: !0,
+         },
+         {
+            label: "Balanço",
+            data: [40, 57, 25, 50, 57, 32, 46, 28, 59, 34, 52, 48],
+            yAxisID: "yAxisTwo",
+            hidden: !0,
+         },
+      ],
+   },
 });

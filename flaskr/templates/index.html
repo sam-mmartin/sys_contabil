@@ -12,23 +12,17 @@
          <div class="header-body">
             <div class="row align-items-end">
                <div class="col">
-
-                  <!-- Pretitle -->
                   <h6 class="header-pretitle text-secondary">
-                     Annual
+                     Anual
                   </h6>
-
-                  <!-- Title -->
                   <h1 class="header-title text-white">
-                     Audience
+                     Contabil
                   </h1>
-
                </div>
-               <div class="col-auto">
 
-                  <!-- Nav -->
+               <div class="col-auto">
                   <ul class="nav nav-tabs header-tabs">
-                     <li class="nav-item" data-toggle="chart" data-target="#audienceChart" data-trigger="click"
+                     <li class="nav-item" data-toggle="chart" data-target="#anualDebits" data-trigger="click"
                         data-action="toggle" data-dataset="0">
                         <a href="#" class="nav-link text-center active" data-bs-toggle="tab">
                            <h6 class="header-pretitle text-secondary">
@@ -39,7 +33,7 @@
                            </h3>
                         </a>
                      </li>
-                     <li class="nav-item" data-toggle="chart" data-target="#audienceChart" data-trigger="click"
+                     <li class="nav-item" data-toggle="chart" data-target="#anualDebits" data-trigger="click"
                         data-action="toggle" data-dataset="1">
                         <a href="#" class="nav-link text-center" data-bs-toggle="tab">
                            <h6 class="header-pretitle text-secondary">
@@ -50,7 +44,7 @@
                            </h3>
                         </a>
                      </li>
-                     <li class="nav-item" data-toggle="chart" data-target="#audienceChart" data-trigger="click"
+                     <li class="nav-item" data-toggle="chart" data-target="#anualDebits" data-trigger="click"
                         data-action="toggle" data-dataset="2">
                         <a href="#" class="nav-link text-center" data-bs-toggle="tab">
                            <h6 class="header-pretitle text-secondary">
@@ -62,23 +56,21 @@
                         </a>
                      </li>
                   </ul>
-
                </div>
-            </div><!-- / .row -->
-         </div> <!-- / .header-body -->
+            </div>
+         </div>
 
          <!-- Footer -->
          <div class="header-footer">
 
             <!-- Chart -->
             <div class="chart">
-               <canvas id="audienceChart" class="chart-canvas"></canvas>
+               <canvas id="anualDebits" class="chart-canvas"></canvas>
             </div>
-
          </div>
-
       </div>
    </div>
+
    <!-- CARDS -->
    <div class="container-fluid mt-n6">
       <div class="row">
@@ -308,212 +300,63 @@
       </div>
 
       <div class="row">
+         <!-- Activity -->
          <div class="col-12 col-xl-4">
-
-            <!-- Activity -->
             <div class="card-adjust-xl">
                <div class="card">
                   <div class="card-header">
-
-                     <!-- Title -->
                      <h4 class="card-header-title">
-                        Recent Activity
+                        Extrato Crédito
                      </h4>
-
-                     <!-- Button -->
-                     <a class="small" href="#!">View all</a>
-
+                     <a class="small" href="#!">Exibir Tudo</a>
                   </div>
                   <div class="card-body">
-
-                     <!-- List group -->
                      <div class="list-group list-group-flush list-group-activity my-n3">
+                        {% for item in finance_data['list_credits'] %}
                         <div class="list-group-item">
                            <div class="row">
                               <div class="col-auto">
-
                                  <!-- Avatar -->
                                  <div class="avatar avatar-sm">
-                                    <img src="./assets/img/avatars/profiles/avatar-1.jpg" alt="..."
+                                    <img src="../static/img/avatars/profiles/avatar-1.jpg" alt="..."
                                        class="avatar-img rounded-circle" />
                                  </div>
-
                               </div>
-                              <div class="col ms-n2">
 
+                              <div class="col ms-n2">
                                  <!-- Content -->
                                  <div class="small">
-                                    <strong>Dianna Smiley</strong> shared your post with Ab Hadley, Adolfo
-                                    Hess, and 3 others.
+                                    <strong>{{ item.description }}</strong>
+                                    R$ {{ item.value }}
+                                    <span class="badge bg-danger-soft">{{item.operation}}</span>
                                  </div>
 
                                  <!-- Time -->
                                  <small class="text-muted">
-                                    2m ago
+                                    {{ item.date }}
                                  </small>
-
                               </div>
                            </div> <!-- / .row -->
                         </div>
-                        <div class="list-group-item">
-                           <div class="row">
-                              <div class="col-auto">
-
-                                 <!-- Avatar -->
-                                 <div class="avatar avatar-sm">
-                                    <img src="./assets/img/avatars/profiles/avatar-2.jpg" alt="..."
-                                       class="avatar-img rounded-circle" />
-                                 </div>
-
-                              </div>
-                              <div class="col ms-n2">
-
-                                 <!-- Content -->
-                                 <div class="small">
-                                    <strong>Ab Hadley</strong> reacted to your post with a 😍
-                                 </div>
-
-                                 <!-- Time -->
-                                 <small class="text-muted">
-                                    2m ago
-                                 </small>
-
-                              </div>
-                           </div> <!-- / .row -->
-                        </div>
-                        <div class="list-group-item">
-                           <div class="row">
-                              <div class="col-auto">
-
-                                 <!-- Avatar -->
-                                 <div class="avatar avatar-sm">
-                                    <img src="./assets/img/avatars/profiles/avatar-3.jpg" alt="..."
-                                       class="avatar-img rounded-circle" />
-                                 </div>
-
-                              </div>
-                              <div class="col ms-n2">
-
-                                 <!-- Content -->
-                                 <div class="small">
-                                    <strong>Adolfo Hess</strong> commented
-                                    <blockquote class="mb-0">
-                                       “I don’t think this really makes sense to do without approval from
-                                       Johnathan since he’s the one...”
-                                    </blockquote>
-                                 </div>
-
-                                 <!-- Time -->
-                                 <small class="text-muted">
-                                    2m ago
-                                 </small>
-
-                              </div>
-                           </div> <!-- / .row -->
-                        </div>
-                        <div class="list-group-item">
-                           <div class="row">
-                              <div class="col-auto">
-
-                                 <!-- Avatar -->
-                                 <div class="avatar avatar-sm">
-                                    <img src="./assets/img/avatars/profiles/avatar-4.jpg" alt="..."
-                                       class="avatar-img rounded-circle" />
-                                 </div>
-
-                              </div>
-                              <div class="col ms-n2">
-
-                                 <!-- Content -->
-                                 <div class="small">
-                                    <strong>Daniela Dewitt</strong> subscribed to you.
-                                 </div>
-
-                                 <!-- Time -->
-                                 <small class="text-muted">
-                                    2m ago
-                                 </small>
-
-                              </div>
-                           </div> <!-- / .row -->
-                        </div>
-                        <div class="list-group-item">
-                           <div class="row">
-                              <div class="col-auto">
-
-                                 <!-- Avatar -->
-                                 <div class="avatar avatar-sm">
-                                    <img src="./assets/img/avatars/profiles/avatar-5.jpg" alt="..."
-                                       class="avatar-img rounded-circle" />
-                                 </div>
-
-                              </div>
-                              <div class="col ms-n2">
-
-                                 <!-- Content -->
-                                 <div class="small">
-                                    <strong>Miyah Myles</strong> shared your post with Ryu Duke, Glen Rouse,
-                                    and 3 others.
-                                 </div>
-
-                                 <!-- Time -->
-                                 <small class="text-muted">
-                                    2m ago
-                                 </small>
-
-                              </div>
-                           </div> <!-- / .row -->
-                        </div>
-                        <div class="list-group-item">
-                           <div class="row">
-                              <div class="col-auto">
-
-                                 <!-- Avatar -->
-                                 <div class="avatar avatar-sm">
-                                    <img src="./assets/img/avatars/profiles/avatar-6.jpg" alt="..."
-                                       class="avatar-img rounded-circle" />
-                                 </div>
-
-                              </div>
-                              <div class="col ms-n2">
-
-                                 <!-- Content -->
-                                 <div class="small">
-                                    <strong>Ryu Duke</strong> reacted to your post with a 😍
-                                 </div>
-
-                                 <!-- Time -->
-                                 <small class="text-muted">
-                                    2m ago
-                                 </small>
-
-                              </div>
-                           </div> <!-- / .row -->
-                        </div>
+                        {% endfor %}
                      </div>
-
                   </div>
                </div>
             </div>
-
          </div>
-         <div class="col-12 col-xl-8">
 
-            <!-- Table Débitos -->
+         <!-- Table Débitos -->
+         <div class="col-12 col-xl-8">
             <div class="card">
                <div class="card-header">
-
-                  <!-- Title -->
                   <h4 class="card-header-title">
                      Extrato
                   </h4>
-
-                  <!-- Button -->
                   <a href="#!" class="btn btn-sm btn-white">
                      Exportar
                   </a>
-
                </div>
+
                <div class="table-responsive mb-0"
                   data-list='{"valueNames": ["products-product", "products-stock", "products-price", "products-sales"]}'
                   id="productsList">
@@ -551,7 +394,7 @@
                                  <!-- Image -->
                                  <div class="avatar">
                                     <img class="avatar-img rounded me-3"
-                                       src="../static/img/avatars/products/product-{{item.id}}.jpg" alt="..." />
+                                       src="../static/img/avatars/products/{{item.category}}.jpg" alt="..." />
                                  </div>
 
                                  <div class="ms-3">

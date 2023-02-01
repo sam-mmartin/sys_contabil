@@ -7,10 +7,9 @@ class Record:
     value: float = 0.0
     category: str = ""
     operation: str = ""
-    date: datetime = datetime.datetime.now()
+    date: datetime.date = datetime.date.today()
 
-    def __init__(self, id, description, value, category, operation, date) -> None:
-        self.id = id
+    def __init__(self, description, value, category, operation, date) -> None:
         self.description = description
         self.value = value
         self.category = category
