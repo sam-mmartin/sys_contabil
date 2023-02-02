@@ -1,16 +1,16 @@
 from .scripts.utils import float_converter
-from .services.server import Server
+from .services.server import ServerSqlite
 
 from flask import (
-    redirect, render_template, request
+    redirect, render_template, request, g
 )
 
 from flask.views import MethodView
 
 
 class Register(MethodView):
-    def __init__(self, server: Server) -> None:
-        self.server = server
+    def __init__(self, server: ServerSqlite) -> None:
+        self.service = server.get_register_service()
 
     def get(self):
         return render_template('register/create.html')
@@ -23,8 +23,9 @@ class Register(MethodView):
         date = request.form['date']
 
         value = float_converter(value)
-        self.server.rs.create_record(
-            description, value, category, operation, date)
+        self.service.create_register(
+            description, value, category, operation, date, g.user['id']
+        )
         return redirect('/')
 
 

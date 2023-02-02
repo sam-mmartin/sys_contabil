@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <link rel="shortcut icon" href="../static/assets/favicon/favicon.ico" type="image/x-icon" />
+   <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css" />
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/libs.bundle.css') }}" />
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.bundle.css') }}" id="stylesheetLight" />
+   <link rel="stylesheet" href="./assets/css/theme-dark.bundle.css" id="stylesheetDark" />
+
+   <style>
+      body {
+         display: none;
+      }
+   </style>
+
+   <!-- Title -->
+   <title>Login</title>
+</head>
+
+<body class="d-flex align-items-center bg-auth border-top border-top-2 border-primary">
+
+   {% block content %}{% endblock %}
+
+
+   <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+   <script src="{{ url_for('static', filename='js/vendor.bundle.js') }}"></script>
+   <script src="{{ url_for('static', filename='js/theme.bundle.js') }}"></script>
+
+</body>
+
+</html>

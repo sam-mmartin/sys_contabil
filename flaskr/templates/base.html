@@ -6,8 +6,8 @@
    <meta name="viewport" content="width=device-width, initial-scale=1" />
    <link rel="shortcut icon" href="../static/assets/favicon/favicon.ico" type="image/x-icon" />
    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css" />
-   <link rel="stylesheet" href="../static/css/libs.bundle.css" />
-   <link rel="stylesheet" href="../static/css/theme.bundle.css" id="stylesheetLight" />
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/libs.bundle.css') }}" />
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.bundle.css') }}" id="stylesheetLight" />
    <link rel="stylesheet" href="./assets/css/theme-dark.bundle.css" id="stylesheetDark" />
 
    <style>
@@ -23,182 +23,6 @@
 <body>
 
    <!-- MODALS -->
-   <!-- Modal: Members -->
-   <div class="modal fade" id="modalMembers" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-         <div class="modal-content">
-            <div class="modal-card card" data-list='{"valueNames": ["name"]}'>
-               <div class="card-header">
-
-                  <!-- Title -->
-                  <h4 class="card-header-title" id="exampleModalCenterTitle">
-                     Add a member
-                  </h4>
-
-                  <!-- Close -->
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-
-               </div>
-               <div class="card-header">
-
-                  <!-- Form -->
-                  <form>
-                     <div class="input-group input-group-flush input-group-merge input-group-reverse">
-                        <input class="form-control list-search" type="search" placeholder="Search">
-                        <div class="input-group-text">
-                           <span class="fe fe-search"></span>
-                        </div>
-                     </div>
-                  </form>
-
-               </div>
-               <div class="card-body">
-
-                  <!-- List group -->
-                  <ul class="list-group list-group-flush list my-n3">
-                     <li class="list-group-item">
-                        <div class="row align-items-center">
-                           <div class="col-auto">
-
-                              <!-- Avatar -->
-                              <a href="./profile-posts.html" class="avatar">
-                                 <img src="./assets/img/avatars/profiles/avatar-5.jpg" alt="..."
-                                    class="avatar-img rounded-circle">
-                              </a>
-
-                           </div>
-                           <div class="col ms-n2">
-
-                              <!-- Title -->
-                              <h4 class="mb-1 name">
-                                 <a href="./profile-posts.html">Miyah Myles</a>
-                              </h4>
-
-                              <!-- Time -->
-                              <p class="small mb-0">
-                                 <span class="text-success">●</span> Online
-                              </p>
-
-                           </div>
-                           <div class="col-auto">
-
-                              <!-- Button -->
-                              <a href="#!" class="btn btn-sm btn-white">
-                                 Add
-                              </a>
-
-                           </div>
-                        </div> <!-- / .row -->
-                     </li>
-                     <li class="list-group-item">
-                        <div class="row align-items-center">
-                           <div class="col-auto">
-
-                              <!-- Avatar -->
-                              <a href="./profile-posts.html" class="avatar">
-                                 <img src="./assets/img/avatars/profiles/avatar-6.jpg" alt="..."
-                                    class="avatar-img rounded-circle">
-                              </a>
-
-                           </div>
-                           <div class="col ms-n2">
-
-                              <!-- Title -->
-                              <h4 class="mb-1 name">
-                                 <a href="./profile-posts.html">Ryu Duke</a>
-                              </h4>
-
-                              <!-- Time -->
-                              <p class="small mb-0">
-                                 <span class="text-success">●</span> Online
-                              </p>
-
-                           </div>
-                           <div class="col-auto">
-
-                              <!-- Button -->
-                              <a href="#!" class="btn btn-sm btn-white">
-                                 Add
-                              </a>
-
-                           </div>
-                        </div> <!-- / .row -->
-                     </li>
-                     <li class="list-group-item">
-                        <div class="row align-items-center">
-                           <div class="col-auto">
-
-                              <!-- Avatar -->
-                              <a href="./profile-posts.html" class="avatar">
-                                 <img src="./assets/img/avatars/profiles/avatar-7.jpg" alt="..."
-                                    class="avatar-img rounded-circle">
-                              </a>
-
-                           </div>
-                           <div class="col ms-n2">
-
-                              <!-- Title -->
-                              <h4 class="mb-1 name">
-                                 <a href="./profile-posts.html">Glen Rouse</a>
-                              </h4>
-
-                              <!-- Time -->
-                              <p class="small mb-0">
-                                 <span class="text-warning">●</span> Busy
-                              </p>
-
-                           </div>
-                           <div class="col-auto">
-
-                              <!-- Button -->
-                              <a href="#!" class="btn btn-sm btn-white">
-                                 Add
-                              </a>
-
-                           </div>
-                        </div> <!-- / .row -->
-                     </li>
-                     <li class="list-group-item">
-                        <div class="row align-items-center">
-                           <div class="col-auto">
-
-                              <!-- Avatar -->
-                              <a href="./profile-posts.html" class="avatar">
-                                 <img src="./assets/img/avatars/profiles/avatar-8.jpg" alt="..."
-                                    class="avatar-img rounded-circle">
-                              </a>
-
-                           </div>
-                           <div class="col ms-n2">
-
-                              <!-- Title -->
-                              <h4 class="mb-1 name">
-                                 <a href="./profile-posts.html">Grace Gross</a>
-                              </h4>
-
-                              <!-- Time -->
-                              <p class="small mb-0">
-                                 <span class="text-danger">●</span> Offline
-                              </p>
-
-                           </div>
-                           <div class="col-auto">
-
-                              <!-- Button -->
-                              <a href="#!" class="btn btn-sm btn-white">
-                                 Add
-                              </a>
-
-                           </div>
-                        </div> <!-- / .row -->
-                     </li>
-                  </ul>
-
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
 
    <!-- Modal: Kanban task -->
    <div class="modal fade" id="modalKanbanTask" tabindex="-1" role="dialog" aria-hidden="true">
@@ -838,7 +662,7 @@
          </button>
 
          <!-- Brand -->
-         <a class="navbar-brand" href="./index.html">
+         <a class="navbar-brand" href="/">
             <img src="../static/img/logo.svg" class="navbar-brand-img mx-auto" alt="...">
          </a>
 
@@ -909,190 +733,20 @@
                   </div>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false"
-                     aria-controls="sidebarPages">
-                     <i class="fe fe-file"></i> Pages
+                  <a class="nav-link" href="#sidebarCategory" data-bs-toggle="collapse" role="button"
+                     aria-expanded="false" aria-controls="sidebarPages">
+                     <i class="fe fe-file"></i> Category
                   </a>
-                  <div class="collapse " id="sidebarPages">
+                  <div class="collapse " id="sidebarCategory">
                      <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
-                           <a href="#sidebarAccount" class="nav-link" data-bs-toggle="collapse" role="button"
-                              aria-expanded="false" aria-controls="sidebarAccount">
-                              Account
+                           <a href="/category" class="nav-link ">
+                              List All
                            </a>
-                           <div class="collapse " id="sidebarAccount">
-                              <ul class="nav nav-sm flex-column">
-                                 <li class="nav-item">
-                                    <a href="./account-general.html" class="nav-link ">
-                                       General
-                                    </a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a href="./account-billing.html" class="nav-link ">
-                                       Billing
-                                    </a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a href="./account-members.html" class="nav-link ">
-                                       Members
-                                    </a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a href="./account-security.html" class="nav-link ">
-                                       Security
-                                    </a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a href="./account-notifications.html" class="nav-link ">
-                                       Notifications
-                                    </a>
-                                 </li>
-                              </ul>
-                           </div>
                         </li>
                         <li class="nav-item">
-                           <a href="#sidebarCrm" class="nav-link" data-bs-toggle="collapse" role="button"
-                              aria-expanded="false" aria-controls="sidebarCrm">
-                              CRM
-                           </a>
-                           <div class="collapse " id="sidebarCrm">
-                              <ul class="nav nav-sm flex-column">
-                                 <li class="nav-item">
-                                    <a href="./crm-contacts.html" class="nav-link ">
-                                       Contacts
-                                    </a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a href="./crm-companies.html" class="nav-link ">
-                                       Companies
-                                    </a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a href="./crm-deals.html" class="nav-link ">
-                                       Deals
-                                    </a>
-                                 </li>
-                              </ul>
-                           </div>
-                        </li>
-                        <li class="nav-item">
-                           <a href="#sidebarProfile" class="nav-link" data-bs-toggle="collapse" role="button"
-                              aria-expanded="false" aria-controls="sidebarProfile">
-                              Profile
-                           </a>
-                           <div class="collapse " id="sidebarProfile">
-                              <ul class="nav nav-sm flex-column">
-                                 <li class="nav-item">
-                                    <a href="./profile-posts.html" class="nav-link ">
-                                       Posts
-                                    </a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a href="./profile-groups.html" class="nav-link ">
-                                       Groups
-                                    </a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a href="./profile-projects.html" class="nav-link ">
-                                       Projects
-                                    </a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a href="./profile-files.html" class="nav-link ">
-                                       Files
-                                    </a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a href="./profile-subscribers.html" class="nav-link ">
-                                       Subscribers
-                                    </a>
-                                 </li>
-                              </ul>
-                           </div>
-                        </li>
-                        <li class="nav-item">
-                           <a href="#sidebarProject" class="nav-link" data-bs-toggle="collapse" role="button"
-                              aria-expanded="false" aria-controls="sidebarProject">
-                              Project
-                           </a>
-                           <div class="collapse " id="sidebarProject">
-                              <ul class="nav nav-sm flex-column">
-                                 <li class="nav-item">
-                                    <a href="./project-overview.html" class="nav-link ">
-                                       Overview
-                                    </a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a href="./project-files.html" class="nav-link ">
-                                       Files
-                                    </a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a href="./project-reports.html" class="nav-link ">
-                                       Reports
-                                    </a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a href="./project-new.html" class="nav-link ">
-                                       New project
-                                    </a>
-                                 </li>
-                              </ul>
-                           </div>
-                        </li>
-                        <li class="nav-item">
-                           <a href="#sidebarTeam" class="nav-link" data-bs-toggle="collapse" role="button"
-                              aria-expanded="false" aria-controls="sidebarTeam">
-                              Team
-                           </a>
-                           <div class="collapse " id="sidebarTeam">
-                              <ul class="nav nav-sm flex-column">
-                                 <li class="nav-item">
-                                    <a href="./team-overview.html" class="nav-link ">
-                                       Overview
-                                    </a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a href="./team-projects.html" class="nav-link ">
-                                       Projects
-                                    </a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a href="./team-members.html" class="nav-link ">
-                                       Members
-                                    </a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a href="./team-new.html" class="nav-link ">
-                                       New team
-                                    </a>
-                                 </li>
-                              </ul>
-                           </div>
-                        </li>
-                        <li class="nav-item">
-                           <a href="#sidebarFeed" class="nav-link" data-bs-toggle="collapse" role="button"
-                              aria-expanded="false" aria-controls="sidebarFeed">
-                              Feed
-                           </a>
-                           <div class="collapse " id="sidebarFeed">
-                              <ul class="nav nav-sm flex-column">
-                                 <li class="nav-item">
-                                    <a href="./feed.html" class="nav-link ">
-                                       Platform
-                                    </a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a href="./social-feed.html" class="nav-link ">
-                                       Social
-                                    </a>
-                                 </li>
-                              </ul>
-                           </div>
-                        </li>
-                        <li class="nav-item">
-                           <a href="./wizard.html" class="nav-link ">
-                              Wizard
+                           <a href="category/create" class="nav-link ">
+                              Create
                            </a>
                         </li>
                         <li class="nav-item">
@@ -1119,9 +773,44 @@
                   </div>
                </li>
                <li class="nav-item">
-                  <a class="nav-link " href="./widgets.html">
-                     <i class="fe fe-grid"></i> Widgets
+                  <a class="nav-link" href="#sidebarOperation" data-bs-toggle="collapse" role="button"
+                     aria-expanded="false" aria-controls="sidebarPages">
+                     <i class="fe fe-file"></i> Operation
                   </a>
+                  <div class="collapse " id="sidebarOperation">
+                     <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                           <a href="/operation" class="nav-link ">
+                              List All
+                           </a>
+                        </li>
+                        <li class="nav-item">
+                           <a href="operation/create" class="nav-link ">
+                              Create
+                           </a>
+                        </li>
+                        <li class="nav-item">
+                           <a href="./kanban.html" class="nav-link ">
+                              Kanban
+                           </a>
+                        </li>
+                        <li class="nav-item">
+                           <a href="./orders.html" class="nav-link ">
+                              Orders
+                           </a>
+                        </li>
+                        <li class="nav-item">
+                           <a href="./invoice.html" class="nav-link ">
+                              Invoice
+                           </a>
+                        </li>
+                        <li class="nav-item">
+                           <a href="./pricing.html" class="nav-link ">
+                              Pricing
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
                </li>
                <li class="nav-item">
                   <a class="nav-link" href="#sidebarAuth" data-bs-toggle="collapse" role="button" aria-expanded="false"
@@ -1298,9 +987,9 @@
 
    <!-- JAVASCRIPT -->
    <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
-   <script src="../static/js/vendor.bundle.js"></script>
-   <script src="../static/js/theme.bundle.js"></script>
-   <script src="../static/js/app/charts.js"></script>
+   <script src="{{ url_for('static', filename='js/vendor.bundle.js') }}"></script>
+   <script src="{{ url_for('static', filename='js/theme.bundle.js') }}"></script>
+   <script src="{{ url_for('static', filename='js/app/charts.js') }}"></script>
 
 </body>
 
