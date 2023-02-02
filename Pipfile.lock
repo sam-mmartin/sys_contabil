@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d74c0067009ade501b20834f4f77756d3b8852ad1181c08bf4ab0ecb8d34073e"
+            "sha256": "fd42face4aa55128e1fae81e93aaabadca8e37cde3243fe001f488995c34400c"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -11,7 +11,7 @@
         "sources": [
             {
                 "name": "pypi",
-                "url": "https://binarios.intranet.bb.com.br/artifactory/api/pypi/pypi/simple",
+                "url": "https://pypi.python.org/simple",
                 "verify_ssl": true
             }
         ]

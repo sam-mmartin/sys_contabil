@@ -8,7 +8,7 @@
    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css" />
    <link rel="stylesheet" href="{{ url_for('static', filename='css/libs.bundle.css') }}" />
    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.bundle.css') }}" id="stylesheetLight" />
-   <link rel="stylesheet" href="./assets/css/theme-dark.bundle.css" id="stylesheetDark" />
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.bundle.css') }}" id="stylesheetDark" />
 
    <style>
       body {
@@ -23,6 +23,7 @@
 <body>
 
    <!-- MODALS -->
+
 
    <!-- Modal: Kanban task -->
    <div class="modal fade" id="modalKanbanTask" tabindex="-1" role="dialog" aria-hidden="true">

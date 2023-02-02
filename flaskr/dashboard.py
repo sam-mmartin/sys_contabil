@@ -42,6 +42,8 @@ def index():
 @bp.route('/sum-credit-month', methods=('GET', 'POST'))
 def sum_credit_month():
     if request.method == 'POST':
-        service = server.get_register_service()
+        # service = server.get_register_service()
+
+        print('entrou')
 
         return redirect(url_for('dashboard.index'))

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <!-- MAIN CONTENT -->
 <div class="main-content">
 
@@ -75,17 +76,12 @@
    <div class="container-fluid mt-n6">
       <div class="row">
          <div class="col-12 col-xl-8">
-
-            <!-- Débitos - Anual -->
+            <!-- Débitos - Mes -->
             <div class="card">
                <div class="card-header">
-
-                  <!-- Title -->
                   <h4 class="card-header-title">
-                     Débitos - Anual
+                     Débitos - Mês
                   </h4>
-
-                  <!-- Caption -->
                   <span class="text-muted me-3">
                      Show affiliate:
                   </span>
@@ -98,18 +94,16 @@
                   </div>
                </div>
                <div class="card-body">
-
                   <!-- Chart -->
                   <div class="chart">
                      <canvas id="month-debits" class="chart-canvas"
                         data-debits="{{finance_data['month_debits']}}"></canvas>
                   </div>
-
                </div>
             </div>
          </div>
-         <div class="col-12 col-xl-4">
 
+         <div class="col-12 col-xl-4">
             <!-- Débitos - Percentual -->
             <div class="card">
                <div class="card-header">
@@ -149,7 +143,6 @@
 
                </div>
             </div>
-
          </div>
       </div>
 
@@ -510,7 +503,7 @@
 <div class="modal fade" id="modalCreditMonth" tabindex="-1" role="dialog" aria-hidden="true">
    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-         <div class="modal-card card" data-list='{"valueNames": ["name"]}'>
+         <div class="modal-card card">
             <div class="card-header">
 
                <!-- Title -->
@@ -522,20 +515,49 @@
                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
             </div>
-            <div class="card-header">
 
-               <!-- Form -->
-               <form>
-                  <div class="input-group input-group-flush input-group-merge input-group-reverse">
-                     <input class="form-control list-search" type="search" placeholder="Search">
-                     <div class="input-group-text">
-                        <span class="fe fe-search"></span>
+            <div class="card-body">
+
+               <form action="dashboard/sum-credit-month" method="post">
+                  <div class="form-group">
+                     <label class="form-label">
+                        Mês Referência
+                     </label>
+                     <div class="input-group input-group-flush input-group-merge input-group-reverse">
+                        <input name="month" class="form-control list-search" type="number" placeholder="Mês Referência">
+                        <div class="input-group-text">
+                           <span class="fe fe-search"></span>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="form-group">
+                     <label class="form-label">
+                        Ano Referência
+                     </label>
+                     <div class="input-group input-group-flush input-group-merge input-group-reverse">
+                        <input name="year" class="form-control list-search" type="number" placeholder="Ano Referência">
+                        <div class="input-group-text">
+                           <span class="fe fe-search"></span>
+                        </div>
+                     </div>
+                  </div>
+
+                  <!-- Buttons -->
+                  <div class="row">
+                     <div class="col-12 col-md-6">
+                        <a href="#" class="btn w-100 btn-link text-muted mt-2">
+                           Cancelar
+                        </a>
+                     </div>
+
+                     <div class="col-12 col-md-6">
+                        <button type="submit" class="btn w-100 btn-primary">
+                           Salvar
+                        </button>
                      </div>
                   </div>
                </form>
-
-            </div>
-            <div class="card-body">
 
             </div>
          </div>

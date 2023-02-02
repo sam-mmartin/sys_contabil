@@ -9,6 +9,8 @@ for (var i in element) {
    debits = element[i];
 }
 
+console.log(debits);
+
 debits = debits.replace(/\{/g, '').replace(/}/g, '');
 debits = debits.split(',');
 
@@ -21,9 +23,41 @@ debits.forEach(item => {
    values.push(parseFloat(temp[1]));
 });
 
+console.log(dates);
+console.log(values);
+
 values.forEach(item => {
    data_debits.push(item / 50);
 });
+
+console.log(data_debits);
+
+inv_deb = ''
+
+for (var i in invoices) {
+   inv_deb = invoices[i]
+}
+
+console.log(inv_deb)
+
+inv_deb = inv_deb.replace('{', '').replace('}', '');
+inv_deb = inv_deb.split(',');
+
+var invoice_amount = 0;
+
+for (var i in inv_deb) {
+   kv = inv_deb[i].split(':');
+   key = kv[0].replace('\'', '').replace('\'', '').trim();
+   value = kv[1].replace('\'', '').replace('\'', '');
+   value = parseFloat(value);
+   invoices_debits[key] = value;
+   invoice_amount += value;
+}
+
+for (var i in invoices_debits) {
+   x = (invoices_debits[i] * 100) / invoice_amount;
+   invoices_debits[i] = x;
+}
 
 new Chart('month-debits', {
    type: 'bar',
@@ -46,29 +80,6 @@ new Chart('month-debits', {
       }]
    }
 });
-
-for (var i in invoices) {
-   debits = invoices[i]
-}
-
-debits = debits.replace('{', '').replace('}', '');
-debits = debits.split(',');
-
-var invoice_amount = 0;
-
-for (var i in debits) {
-   kv = debits[i].split(':');
-   key = kv[0].replace('\'', '').replace('\'', '').trim();
-   value = kv[1].replace('\'', '').replace('\'', '');
-   value = parseFloat(value);
-   invoices_debits[key] = value;
-   invoice_amount += value;
-}
-
-for (var i in invoices_debits) {
-   x = (invoices_debits[i] * 100) / invoice_amount;
-   invoices_debits[i] = x;
-}
 
 new Chart('debitsChart', {
    type: 'doughnut',
