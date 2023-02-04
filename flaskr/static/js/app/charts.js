@@ -1,21 +1,20 @@
 var element = document.getElementById('month-debits').dataset;
 var invoices = document.getElementById('debitsChart').dataset;
+var annual_credits = document.getElementById('anualCredits').dataset;
 
 var debits = '';
+var inv_deb = ''
 var data_debits = [];
-var invoices_debits = {};
+var values = [];
+var dates = [];
+var invoice_amount = 0;
 
 for (var i in element) {
    debits = element[i];
 }
 
-console.log(debits);
-
 debits = debits.replace(/\{/g, '').replace(/}/g, '');
 debits = debits.split(',');
-
-values = [];
-dates = [];
 
 debits.forEach(item => {
    temp = item.split(':');
@@ -23,40 +22,49 @@ debits.forEach(item => {
    values.push(parseFloat(temp[1]));
 });
 
-console.log(dates);
-console.log(values);
-
 values.forEach(item => {
    data_debits.push(item / 50);
 });
-
-console.log(data_debits);
-
-inv_deb = ''
 
 for (var i in invoices) {
    inv_deb = invoices[i]
 }
 
-console.log(inv_deb)
-
 inv_deb = inv_deb.replace('{', '').replace('}', '');
 inv_deb = inv_deb.split(',');
 
-var invoice_amount = 0;
-
-for (var i in inv_deb) {
-   kv = inv_deb[i].split(':');
-   key = kv[0].replace('\'', '').replace('\'', '').trim();
-   value = kv[1].replace('\'', '').replace('\'', '');
-   value = parseFloat(value);
-   invoices_debits[key] = value;
+var invoices_debits = createDict(inv_deb);
+Object.entries(invoices_debits).forEach(([key, value]) => {
    invoice_amount += value;
-}
+});
 
 for (var i in invoices_debits) {
    x = (invoices_debits[i] * 100) / invoice_amount;
    invoices_debits[i] = x;
+}
+
+var credits = '';
+
+for (var i in annual_credits) {
+   credits = annual_credits[i];
+}
+
+credits = credits.replace('{', '').replace('}', '');
+credits = credits.split(',');
+var credits_dict = createDict(credits);
+
+function createDict(obj) {
+   dict = {};
+
+   for (var i in obj) {
+      kv = obj[i].split(':');
+      key = kv[0].replace('\'', '').replace('\'', '').trim();
+      value = kv[1].replace('\'', '').replace('\'', '');
+      value = parseFloat(value);
+      dict[key] = value;
+   }
+
+   return dict;
 }
 
 new Chart('month-debits', {
@@ -95,19 +103,15 @@ new Chart('debitsChart', {
       }
    },
    data: {
-      labels: ['Faturas', 'Fixos', 'Variaveis'],
+      labels: Object.keys(invoices_debits),
       datasets: [{
-         data: [
-            invoices_debits.Fatura,
-            invoices_debits.Fixo,
-            invoices_debits.Variavel
-         ],
+         data: Object.values(invoices_debits),
          backgroundColor: ['#2C7BE5', '#A6C5F7', '#D2DDEC']
       }]
    }
 });
 
-new Chart('anualDebits', {
+new Chart('anualCredits', {
    type: 'line',
    options: {
       scales: {
@@ -132,24 +136,11 @@ new Chart('anualDebits', {
       },
    },
    data: {
-      labels: [
-         "Jan",
-         "Feb",
-         "Mar",
-         "Apr",
-         "May",
-         "Jun",
-         "Jul",
-         "Aug",
-         "Sep",
-         "Oct",
-         "Nov",
-         "Dec",
-      ],
+      labels: Object.keys(credits_dict),
       datasets: [
          {
             label: "Entradas",
-            data: [5321.74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            data: Object.values(credits_dict),
             yAxisID: "yAxisOne",
          },
          {

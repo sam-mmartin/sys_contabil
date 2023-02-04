@@ -1,3 +1,4 @@
+from flaskr.auth import login_required
 from .scripts.utils import float_converter
 from .services.server import ServerSqlite
 
@@ -9,6 +10,8 @@ from flask.views import MethodView
 
 
 class Register(MethodView):
+    decorators = [login_required]
+
     def __init__(self, server: ServerSqlite) -> None:
         self.service = server.get_register_service()
 

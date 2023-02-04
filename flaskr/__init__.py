@@ -28,9 +28,6 @@ def create_app(test_config=None):
     from . import auth
     app.register_blueprint(auth.bp)
 
-    # from .services.server import Server
-    # server = Server("flaskr/data/web_registro_contabil.csv")
-
     from .services.server import ServerSqlite
     server = ServerSqlite()
 
@@ -48,24 +45,5 @@ def create_app(test_config=None):
 
     from . import register
     register.register_api(app, server, "registers")
-
-    # @app.route('/')
-    # def home():
-    #     credit_amount = server.finance.get_credit_amount()
-    #     debit_amount = server.finance.get_debit_amount()
-    #     balance_amount = round(credit_amount - debit_amount, 2)
-
-    #     data = {
-    #         'credit_amount': credit_amount,
-    #         'debit_amount': debit_amount,
-    #         'month_debits': server.finance.list_all_month_debits_value(),
-    #         'invoice_amount': server.finance.invoice_debits(),
-    #         'balance_amount': balance_amount,
-    #         'list_debits': server.finance.list_all_month_debits(),
-    #         'list_credits': server.finance.list_all_month_credits()
-    #     }
-    #     return render_template(
-    #         'index.html', finance_data=data
-    #     )
 
     return app

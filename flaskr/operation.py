@@ -13,6 +13,7 @@ server = ServerSqlite()
 
 
 @bp.route('/operation')
+@login_required
 def index():
     service = server.get_operation_service()
     operations: Operation = service.list_all_operations()
@@ -20,6 +21,7 @@ def index():
 
 
 @bp.route('/operation/create', methods=('GET', 'POST'))
+@login_required
 def create():
     if request.method == 'POST':
         description = request.form['description']

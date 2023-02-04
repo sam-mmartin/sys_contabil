@@ -1,3 +1,4 @@
+from calendar import monthrange
 from datetime import datetime
 from flaskr.dto.register_dto import RegisterDTO
 
@@ -11,21 +12,27 @@ import numpy as np
 
 class RegisterService:
 
-    def __init__(self, repository: RegisterRepository, op_repo: OperationRepository, cat_repo: CategoryRepository) -> None:
+    def __init__(self, repository: RegisterRepository,
+                 op_repo: OperationRepository,
+                 cat_repo: CategoryRepository) -> None:
         self.repository = repository
         self.op_repo = op_repo
         self.cat_repo = cat_repo
+        self.year = datetime.now().year
 
-    def list_all_registers_by_operation(self, operation_id):
-        registers = self.repository.list_registers_by_operation(operation_id)
-        return self.list_registers(registers)
+    def list_all_registers_by_operation(self, operation_id, month, user_id):
+        dt = self.get_first_and_last_day_to_month(month)
+        registers = self.repository.list_registers_by_operation(
+            operation_id, dt, user_id)
+        return self.mapperToDto(registers)
 
-    def list_all_registers_by_category(self, operation_id, category_id):
+    def list_all_registers_by_category(self, operation_id, category_id, month, user_id):
+        dt = self.get_first_and_last_day_to_month(month)
         registers = self.repository.list_registers_by_category(
-            operation_id, category_id)
-        return self.list_registers(registers)
+            operation_id, category_id, dt, user_id)
+        return self.mapperToDto(registers)
 
-    def list_registers(self, registers):
+    def mapperToDto(self, registers):
         res: list[RegisterDTO] = []
 
         for register in registers:
@@ -47,11 +54,17 @@ class RegisterService:
 
         self.repository.create(register)
 
-    def get_sum_amount(self, operation_id, month):
-        return self.repository.select_sum_amount(operation_id, month)
+    def get_sum_amount(self, operation_id, month, user_id):
+        dt = self.get_first_and_last_day_to_month(month)
+        sum = self.repository.select_sum_amount(operation_id, dt, user_id)
 
-    def month_debits_sum_amount(self):
-        registers = self.list_all_registers_by_operation(1)
+        if sum is None:
+            sum = 0
+
+        return sum
+
+    def month_debits_sum_amount(self, month, user_id):
+        registers = self.list_all_registers_by_operation(1, month, user_id)
         dates = self.return_dates_month_debits(registers)
         res = {}
         sum = 0
@@ -77,12 +90,13 @@ class RegisterService:
 
         return dates
 
-    def invoice_debits(self) -> dict:
+    def invoice_debits(self, month, user_id) -> dict:
         invoice_dict = {}
         categorys = self.cat_repo.list_all()
 
         for category in categorys:
-            debits = self.list_all_registers_by_category(1, category.id)
+            debits = self.list_all_registers_by_category(
+                1, category.id, month, user_id)
             sum_amount = self.calc(debits)
             invoice_dict[category.description] = sum_amount
 
@@ -97,9 +111,18 @@ class RegisterService:
         res = np.sum(np.asarray(values, dtype=float))
         return res
 
-    def count_registers_by_operation(self, operation_id):
-        return self.repository.select_count_registers(operation_id)
+    def count_registers_by_operation(self, operation_id, month, user_id):
+        dt = self.get_first_and_last_day_to_month(month)
+        return self.repository.select_count_registers(operation_id, dt, user_id)
 
-    def set_credit_sum_month(self, month, year, user_id):
-        sum = self.get_sum_amount(2, False)
-        self.repository.create_credit_sum_annual(sum, month, year, user_id)
+    def get_first_and_last_day_to_month(self, month):
+        first_day = datetime(self.year, month, 1).date()
+        last_day = datetime(self.year, month,
+                            monthrange(self.year, month)[1]).date()
+
+        res = {
+            "first_day": first_day,
+            "last_day": last_day
+        }
+
+        return res

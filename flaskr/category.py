@@ -12,6 +12,7 @@ server = ServerSqlite()
 
 
 @bp.route('/category')
+@login_required
 def index():
     service = server.get_category_service()
     categorys: Category = service.list_all_category()
@@ -19,6 +20,7 @@ def index():
 
 
 @bp.route('/category/create', methods=('GET', 'POST'))
+@login_required
 def create_category():
     if request.method == 'POST':
         description = request.form['description']

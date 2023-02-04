@@ -1,6 +1,7 @@
 from flaskr.db import DbFile
+from flaskr.repository.annual_sums_repository import AnnualSumsRepository
+from flaskr.services.annual_sums_service import AnnualSumsService
 
-from ..repository.record_repository import RecordRepository
 from ..repository.register_repository import RegisterRepository
 
 from flaskr.repository.category_repository import CategoryRepository
@@ -9,26 +10,10 @@ from flaskr.repository.operation_repository import OperationRepository
 from flaskr.services.category_service import CategoryService
 from flaskr.services.operation_service import OperationService
 
-from ..services.register_service import RegisterService
-from ..services.record import RecordService
+from flaskr.services.register_service import RegisterService
 
 
 from flaskr.sqlite import get_db
-
-
-class Server:
-
-    def __init__(self, filename) -> None:
-        self.db = DbFile(filename)
-        self.rr = RecordRepository(self.db)
-        self.rs = RecordService(self.rr)
-        #self.finance = FinanceService(self.rr)
-
-    # def get_finance(self):
-    #     return self.finance
-
-    def get_record_service(self):
-        return self.rs
 
 
 class ServerSqlite:
@@ -46,3 +31,8 @@ class ServerSqlite:
     def get_category_service(self):
         repository = CategoryRepository()
         return CategoryService(repository)
+
+    def get_annual_sums_service(self):
+        repository = AnnualSumsRepository()
+        reg_serv = self.get_register_service()
+        return AnnualSumsService(repository, reg_serv)
