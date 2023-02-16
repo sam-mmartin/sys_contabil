@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="main-content">
+   <div class="container-fluid">
+      <div class="row justify-content-center">
+         <div class="col-12 col-lg-10 col-xl-8">
+
+            <!-- Header -->
+            <div class="header mt-md-5">
+               <div class="header-body">
+                  <div class="row align-items-center">
+                     <div class="col">
+
+                        <!-- Pretitle -->
+                        <h6 class="header-pretitle">
+                           Overview
+                        </h6>
+
+                        <!-- Title -->
+                        <h1 class="header-title">
+                           Register
+                        </h1>
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+
+            <!-- Form -->
+            <form action="/registers/{{register.id}}/update" method="post">
+               <div class="row">
+                  <div class="col-12">
+                     <!-- Description -->
+                     <div class="form-group">
+                        <!-- Label -->
+                        <label class="form-label">
+                           Description
+                        </label>
+                        <!-- Input -->
+                        <input value="{{register.description}}" name="description" type="text" class="form-control">
+                     </div>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                     <!-- Category -->
+                     <div class="form-group">
+                        <!-- Label -->
+                        <label class="form-label">
+                           Category
+                        </label>
+                        <!-- Input -->
+                        <input value="{{register.category}}" name="category" type="text" class="form-control">
+                     </div>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                     <!-- Operation -->
+                     <div class="form-group">
+                        <!-- Label -->
+                        <label class="form-label">
+                           Operation
+                        </label>
+                        <!-- Input -->
+                        <input value="{{register.operation}}" name="operation" type="text" class="form-control">
+                     </div>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                     <!-- Value -->
+                     <div class="form-group">
+                        <!-- Label -->
+                        <label class="form-label">
+                           Value
+                        </label>
+                        <!-- Input -->
+                        <input value="{{register.amount}}" name="amount" type="text" class="form-control">
+                     </div>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                     <!-- Date -->
+                     <div class="form-group">
+                        <!-- Label -->
+                        <label class="form-label">
+                           Date
+                        </label>
+                        <!-- Input -->
+                        <input value="{{register.date_register}}" name="date_register" type="text"
+                           class="form-control mb-3" data-flatpickr='{"dateFormat": "d-m-Y"}'>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Button -->
+               <button type="submit" class="btn btn-primary">
+                  Save changes
+               </button>
+
+               <!-- Divider -->
+               <hr class="my-5">
+
+               <div class="row">
+                  <div class="col-12 col-md-6">
+
+                     <!-- Public profile -->
+                     <div class="form-group">
+
+                        <!-- Label -->
+                        <label class="mb-1">
+                           Public profile
+                        </label>
+
+                        <!-- Form text -->
+                        <small class="form-text text-muted">
+                           Making your profile public means that anyone on the Dashkit network will be able to find
+                           you.
+                        </small>
+
+                        <div class="row">
+                           <div class="col-auto">
+
+                              <!-- Switch -->
+                              <div class="form-check form-switch">
+                                 <input class="form-check-input" type="checkbox" id="switchOne" />
+                                 <label class="form-check-label" for="switchOne"></label>
+                              </div>
+
+                           </div>
+                           <div class="col ms-n2">
+
+                              <!-- Help text -->
+                              <small class="text-muted">
+                                 You're currently invisible
+                              </small>
+
+                           </div>
+                        </div> <!-- / .row -->
+                     </div>
+
+                  </div>
+                  <div class="col-12 col-md-6">
+
+                     <!-- Allow for additional Bookings -->
+                     <div class="form-group">
+
+                        <!-- Label -->
+                        <label class="mb-1">
+                           Allow for additional Bookings
+                        </label>
+
+                        <!-- Form text -->
+                        <small class="form-text text-muted">
+                           If you are available for hire outside of the current situation, you can encourage others
+                           to hire you.
+                        </small>
+
+                        <div class="row">
+                           <div class="col-auto">
+
+                              <!-- Switch -->
+                              <div class="form-check form-switch">
+                                 <input class="form-check-input" type="checkbox" id="switchTwo" checked />
+                                 <label class="form-check-label" for="switchTwo"></label>
+                              </div>
+
+                           </div>
+                           <div class="col ms-n2">
+
+                              <!-- Help text -->
+                              <small class="text-muted">
+                                 You're currently available
+                              </small>
+
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Divider -->
+               <hr class="mt-4 mb-5">
+            </form>
+
+            <form action="/registers/{{register.id}}/delete" method="post">
+               <div class="row justify-content-between">
+                  <div class="col-12 col-md-6">
+                     <!-- Heading -->
+                     <h4>
+                        Delete register
+                     </h4>
+                     <!-- Text -->
+                     <p class="small text-muted mb-md-0">
+                        Please note, deleting your account is a permanent action and will no be recoverable once
+                        completed.
+                     </p>
+                  </div>
+
+                  <div class="col-auto">
+                     <!-- Button -->
+                     <button type="submit" class="btn btn-danger">
+                        Delete
+                     </button>
+                  </div>
+               </div>
+            </form>
+
+            <br><br>
+         </div>
+      </div>
+   </div>
+
+</div>
+{% endblock %}

@@ -24,21 +24,30 @@ class RegisterService:
         dt = self.get_first_and_last_day_to_month(month)
         registers = self.repository.list_registers_by_operation(
             operation_id, dt, user_id)
-        return self.mapperToDto(registers)
+        return self.mapper_list_to_dto(registers)
 
     def list_all_registers_by_category(self, operation_id, category_id, month, user_id):
         dt = self.get_first_and_last_day_to_month(month)
         registers = self.repository.list_registers_by_category(
             operation_id, category_id, dt, user_id)
-        return self.mapperToDto(registers)
+        return self.mapper_list_to_dto(registers)
 
-    def mapperToDto(self, registers):
+    def get_register_by_id(self, id, user_id):
+        register = self.repository.get_by_id(id, user_id)
+        return self.mapper_to_dto(register)
+
+    def mapper_to_dto(self, register):
+        res = RegisterDTO(
+            register[0], register[1], register[2], register[3], register[4], register[5]
+        )
+
+        return res
+
+    def mapper_list_to_dto(self, registers):
         res: list[RegisterDTO] = []
 
         for register in registers:
-            res.append(RegisterDTO(
-                register[0], register[1], register[2], register[3], register[4]
-            ))
+            res.append(self.mapper_to_dto(register))
 
         return res
 
@@ -54,6 +63,18 @@ class RegisterService:
 
         self.repository.create(register)
 
+    def update_register(self, id, description, amount, category, operation, date_register, user_id):
+        date = datetime.strptime(date_register, '%d-%m-%Y').date()
+
+        op = self.op_repo.list_by_description(operation)
+        cat = self.cat_repo.list_by_description(category)
+
+        register = RegisterRequestDto(
+            description, amount, cat['id'], op['id'], date, user_id
+        )
+
+        self.repository.update(id, register)
+
     def get_sum_amount(self, operation_id, month, user_id):
         dt = self.get_first_and_last_day_to_month(month)
         sum = self.repository.select_sum_amount(operation_id, dt, user_id)
@@ -61,7 +82,7 @@ class RegisterService:
         if sum is None:
             sum = 0
 
-        return sum
+        return round(sum, 2)
 
     def month_debits_sum_amount(self, month, user_id):
         registers = self.list_all_registers_by_operation(1, month, user_id)
@@ -126,3 +147,6 @@ class RegisterService:
         }
 
         return res
+
+    def delete(self, id, user_id):
+        self.repository.delete(id, user_id)

@@ -33,7 +33,7 @@
 
          <!-- Brand -->
          <a class="navbar-brand" href="/">
-            <img src="../static/img/logo.svg" class="navbar-brand-img mx-auto" alt="...">
+            <img src="{{url_for('static', filename='img/logo.svg')}}" class="navbar-brand-img mx-auto" alt="...">
          </a>
 
          <!-- User (xs) -->
@@ -122,6 +122,26 @@
                      </ul>
                   </div>
                </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#sidebarGroups" data-bs-toggle="collapse" role="button"
+                     aria-expanded="false" aria-controls="sidebarPages">
+                     <i class="fe fe-file"></i> Groups
+                  </a>
+                  <div class="collapse " id="sidebarGroups">
+                     <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                           <a href="/groupby" class="nav-link ">
+                              List All
+                           </a>
+                        </li>
+                        <li class="nav-item">
+                           <a href="groupby/create" class="nav-link ">
+                              Create
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+               </li>
                <li class="nav-item d-md-none">
                   <a class="nav-link" data-bs-toggle="offcanvas" href="#sidebarOffcanvasActivity"
                      aria-contrtols="sidebarOffcanvasActivity">
@@ -167,8 +187,8 @@
                   <a href="#" id="sidebarIconCopy" class="dropdown-toggle" role="button" data-bs-toggle="dropdown"
                      aria-haspopup="true" aria-expanded="false">
                      <div class="avatar avatar-sm avatar-online">
-                        <img src="../static/img/avatars/profiles/avatar-1.jpg" class="avatar-img rounded-circle"
-                           alt="...">
+                        <img src="{{url_for('static', filename='img/avatars/profiles/avatar-1.jpg')}}"
+                           class="avatar-img rounded-circle" alt="...">
                      </div>
                   </a>
 
@@ -262,6 +282,7 @@
    <script src="{{ url_for('static', filename='js/vendor.bundle.js') }}"></script>
    <script src="{{ url_for('static', filename='js/theme.bundle.js') }}"></script>
    <script src="{{ url_for('static', filename='js/app/charts.js') }}"></script>
+   <script src="{{ url_for('static', filename='js/app/custom.js')}}"></script>
 
 </body>
 

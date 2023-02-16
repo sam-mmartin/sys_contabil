@@ -25,6 +25,26 @@ class AnnualSumsRepository:
         )
         self.db.commit()
 
+    def update(self, id, sum):
+        self.db.execute(
+            'UPDATE sum_anual SET amount = ?'
+            ' WHERE id = ?',
+            (sum, id)
+        )
+        self.db.commit()
+
+    def if_exists(self, month, year, operation_id, user_id):
+        sums = self.db.execute(
+            'SELECT * FROM sum_anual'
+            ' WHERE month = ? AND year = ? AND operation_id = ? AND user_id = ?',
+            (month,
+             year,
+             operation_id,
+             user_id)
+        ).fetchone()
+
+        return sums
+
     def list_by_user(self, user_id):
         today = datetime.date.today()
 
@@ -33,7 +53,7 @@ class AnnualSumsRepository:
             (today.year, user_id)
         ).fetchall()
 
-        return sums
+        return self.parse(sums)
 
     def list_by_operation_and_user(self, operation_id, user_id):
         today = datetime.date.today()
